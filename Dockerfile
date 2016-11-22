@@ -1,8 +1,6 @@
 FROM centos:7
 ENV container docker
-RUN yum -y update; yum clean all
-RUN yum update && yum install -y sudo vim curl python python-pip telnet net-tools java-1.7.0-openjdk-devel.x86_64 nfs-utils nfs-utils-lib libnfsidmap
-RUN yum -y install systemd sudo vim curl python python-pip telnet net-tools java-1.7.0-openjdk-devel.x86_64 nfs-utils nfs-utils-lib libnfsidmap; yum clean all; \
+RUN yum -y update; yum -y install systemd sudo vim curl python python-pip telnet net-tools java-1.7.0-openjdk-devel.x86_64 nfs-utils nfs-utils-lib libnfsidmap; yum clean all; \
 (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
 rm -f /lib/systemd/system/multi-user.target.wants/*;\
 rm -f /etc/systemd/system/*.wants/*;\
